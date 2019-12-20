@@ -7,8 +7,6 @@ var rename = require('gulp-rename');
 
 var uglify = require('gulp-uglify');
 
-var Server = require('karma').Server;
-
 function inc(importance) {
   return gulp.src(['./package.json'])
     .pipe(bump({type: importance}))
@@ -25,15 +23,6 @@ gulp.task('feature', function () {
 });
 gulp.task('release', function () {
   return inc('major');
-});
-
-/**
- * Run test once and exit
- */
-gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-  }, done).start();
 });
 
 gulp.task('min', function () {
